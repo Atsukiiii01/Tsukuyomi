@@ -1,0 +1,26 @@
+[package]
+name = "tsukuyomi"
+version = "0.5.0"
+edition = "2021"
+
+[dependencies]
+# Async Runtime
+tokio = { version = "1", features = ["full"] }
+
+# TLS Parsing
+tls-parser = "0.11"
+
+# CRITICAL: We lock these to specific versions that work together.
+# do NOT remove the '=' signs.
+rcgen = "=0.11.3" 
+rsa = "0.9"
+time = "0.3"
+
+# Rustls 0.21 Stack (The Gold Standard)
+rustls = { version = "=0.21.12", default-features = false, features = ["dangerous_configuration", "quic", "logging", "tls12"] }
+tokio-rustls = "=0.24.1"
+rustls-pemfile = "1.0"
+webpki-roots = "=0.25.4" 
+
+# Utilities
+bytes = "1"
