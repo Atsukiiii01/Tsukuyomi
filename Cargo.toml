@@ -1,26 +1,22 @@
 [package]
 name = "tsukuyomi"
-version = "0.5.0"
+version = "0.7.0"
 edition = "2021"
 
 [dependencies]
-# Async Runtime
 tokio = { version = "1", features = ["full"] }
-
-# TLS Parsing
 tls-parser = "0.11"
 
-# CRITICAL: We lock these to specific versions that work together.
-# do NOT remove the '=' signs.
-rcgen = "=0.11.3" 
+# We use rcgen 0.13 to match the modern pki_types in rustls 0.23
+rcgen = "0.13"
 rsa = "0.9"
 time = "0.3"
 
-# Rustls 0.21 Stack (The Gold Standard)
-rustls = { version = "=0.21.12", default-features = false, features = ["dangerous_configuration", "quic", "logging", "tls12"] }
-tokio-rustls = "=0.24.1"
-rustls-pemfile = "1.0"
-webpki-roots = "=0.25.4" 
+# --- THE QUANTUM ENGINE ---
+# We enable the aws_lc_rs feature, which contains the ML-KEM/Kyber-768 algorithms.
+rustls = { version = "0.23", default-features = false, features = ["std", "tls12", "logging", "aws_lc_rs"] }
+tokio-rustls = { version = "0.26", default-features = false, features = ["logging", "tls12"] }
+rustls-pemfile = "2"
+webpki-roots = "0.26"
 
-# Utilities
 bytes = "1"
