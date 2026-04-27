@@ -6,4 +6,5 @@ Cargo.lock
 .DS_Store
 
 # SECURITY: NEVER upload private keys
-certs/*.key
+certs/*.keycerts/*.key
+target/
